@@ -65,32 +65,19 @@ Rules:
 
     try {
 
-        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      const response = await fetch("/generate-proposal", {
 
-            method: "POST",
+    method: "POST",
 
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${GROQ_API_KEY}`
-            },
+    headers: {
+        "Content-Type": "application/json"
+    },
 
-            body: JSON.stringify({
+    body: JSON.stringify({
+        prompt: prompt
+    })
 
-                model: "llama-3.3-70b-versatile",
-
-                messages: [
-                    {
-                        role: "user",
-                        content: prompt
-                    }
-                ],
-
-                temperature: 0.7
-
-            })
-
-        });
-
+}); 
         const data = await response.json();
 
         console.log(data);
